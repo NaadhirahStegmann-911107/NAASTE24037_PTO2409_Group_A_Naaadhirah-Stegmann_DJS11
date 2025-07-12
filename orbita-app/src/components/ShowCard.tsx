@@ -1,6 +1,6 @@
 import React from "react";
-
-export const genreMap: { [key: number]: string } = {
+import 
+export interface GenreMap: { [key: number]: string } = {
     1: "Personal Growth",
     2: "Investigative Journalism",
     3: "History",
