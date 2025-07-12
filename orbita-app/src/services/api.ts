@@ -35,13 +35,6 @@ interface Genre {
     showIds: number[];
 }
 
-interface Favorite {
-    showId: number;
-    seasonId: number;
-    episodeId: number;
-    addedAt: string;
-}
-
 export const fetchPreviews = async (): Promise<Preview[]> => {
     const response = await fetch('https://podcast-api.netlify.app');
     if (!response.ok) throw new Error('Failed to fetch previews');

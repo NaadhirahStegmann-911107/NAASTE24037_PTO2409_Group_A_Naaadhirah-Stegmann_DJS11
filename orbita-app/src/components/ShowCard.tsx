@@ -1,6 +1,6 @@
 import React from "react";
 
-const genreMap: { [key: number]: string } = {
+export const genreMap: { [key: number]: string } = {
     1: "Personal Growth",
     2: "Investigative Journalism",
     3: "History",
@@ -12,7 +12,8 @@ const genreMap: { [key: number]: string } = {
     9: "Kids and Family",
 };
 
-interface Preview {
+export interface Preview {
+    id: string;
     genreIds: number[];
     updated: string | number | Date;
     image: string;
