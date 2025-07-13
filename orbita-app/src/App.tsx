@@ -1,26 +1,20 @@
 import { Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-// import PodcastPage from './pages/PodcastPage';
+import Layout from './components/Layout';
+import Home from './components/Home';
+import AllShows from './components/AllShows';
+import PodcastPage from './pages/PodcastPage';
 import './App.css'
 
-// A placeholder for the home page
-const HomePage = () => (
-  <div className="card">
-    <h1>Welcome to Orbita</h1>
-    <p>Your podcast journey starts here.</p>
-  </div>
-);
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <Header />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        {/* <Route path="/podcast/:id" element={<PodcastPage />} /> */}
+        <Route path="/" element={<Layout />} />
+        <Route index element={<Home />} />
+        <Route path="/podcast/:id" element={<PodcastPage />} />
+        <Route path="/shows" element={<AllShows />} />
       </Routes>
-    </div>
   )
 }
 
-export default App
+export default App;

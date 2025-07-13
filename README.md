@@ -5,12 +5,15 @@
 <!-- omit in toc -->
 **Table of Contents**
 
-- [🤖 Technology](#-technology)
-- [📦Data](#data)
-	- [Relationships](#relationships)
-	- [Endpoints](#endpoints)
-	- [Genre Titles](#genre-titles)
-- [🧑 User Stories](#user-stories)
+- [🎵 PODCAST APP | PORTFOLIO PIECE 💿](#-podcast-app--portfolio-piece-)
+	- [🤖 Technology](#-technology)
+	- [📦Data](#data)
+		- [Relationships](#relationships)
+		- [Endpoints](#endpoints)
+		- [Genre Titles](#genre-titles)
+	- [🧑 User Stories](#user-stories)
+- [CORE PROJECT REQUIREMENTS ✅](#core-project-requirements-)
+- [STRETCH GOALS 💪](#stretch-goals-)
 
 ## 🤖 Technology
 

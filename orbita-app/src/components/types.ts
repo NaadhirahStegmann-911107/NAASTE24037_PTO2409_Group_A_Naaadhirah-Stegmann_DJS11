@@ -35,6 +35,7 @@ export type Preview = {
 export interface Genre {
     id: number;
     title: string;
+    description: string;
 }
 
 export interface Favorite {

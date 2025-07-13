@@ -1,14 +1,13 @@
 import React from "react";
-
+interface AudioPlayerProps {
+    currentEpisode: Episode | null;
+}
 interface Episode {
     id: string;
     title: string;
     file: string;
 }
 
-interface AudioPlayerProps {
-    currentEpisode: Episode | null;
-}
 
 const AudioPlayer: React.FC<AudioPlayerProps> = ({ currentEpisode }) => {
     const [progress, setProgress] = React.useState(0);
@@ -23,7 +22,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ currentEpisode }) => {
         };
 
         const handleEnded = () => {
-            const listenedEpisodes = JSON.parse(localStorage.getItem('listenedEpisodes') ||'[]');
+            const listenedEpisodes = JSON.parse(localStorage.getItem('listenedEpisodes') || '[]');
                 if (currentEpisode && !listenedEpisodes.includes(currentEpisode.id)) {
                 localStorage.setItem('listenedEpisodes', JSON.stringify([...listenedEpisodes, currentEpisode.id]));
             }

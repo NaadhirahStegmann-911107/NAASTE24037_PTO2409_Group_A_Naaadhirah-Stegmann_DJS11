@@ -1,6 +1,6 @@
 import React from "react";
 import ShowCard from "./ShowCard";
-import type { Preview, Genre } from "./types";
+import type { Preview, Genre } from "./types"
 
 interface CarouselProps {
     previews: Preview[];
