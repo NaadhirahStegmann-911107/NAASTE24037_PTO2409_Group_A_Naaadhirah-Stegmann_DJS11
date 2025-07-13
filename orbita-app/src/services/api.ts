@@ -12,13 +12,16 @@ interface Show {
     id: number;
     title: string;
     description: string;
+    genres?: Genre[];
+    updated?: string;
+    image?: string;
     seasons: Season[];
 }
 
 interface Season {
     id: number;
     title: string;
-    image: string;
+    image?: string;
     episodes: Episode[];
 }
 
@@ -26,6 +29,9 @@ interface Episode {
     id: number;
     file: string;
     title: string;
+    audioUrl?: string;
+    duration?: number;
+    description?: string;
 }
 
 interface Genre {

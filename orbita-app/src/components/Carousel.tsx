@@ -1,12 +1,13 @@
 import React from "react";
 import ShowCard from "./ShowCard";
-import type { Preview } from "./ShowCard";
+import type { Preview, Genre } from "./types";
 
 interface CarouselProps {
     previews: Preview[];
+    genres: { [key: number]: Genre };
 }
 
-const Carousel: React.FC<CarouselProps> = ({ previews }) => {
+const Carousel: React.FC<CarouselProps> = ({ previews, genres }) => {
     const [currentIndex, setCurrentIndex] = React.useState(0);
 
     React.useEffect(() => {
@@ -20,7 +21,7 @@ const Carousel: React.FC<CarouselProps> = ({ previews }) => {
             <div className="carousel">
                 {previews.map((preview, index) => (
                     <div key={preview.id} className={`carousel-item ${index === currentIndex ? 'active' : ''}`}>
-                        <ShowCard preview={preview} />
+                        <ShowCard preview={preview} genres={genres} />
                     </div>
                 ))}
             </div>

@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useMemo, ChangeEvent } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { fetchPreviews, fetchShow, fetchGenre } from "../services/api";
 import AudioPlayer from "../components/AudioPlayer";
 import ShowCard from "../components/ShowCard";
 import Carousel from "../components/Carousel";
-import type { Favorite, Preview, Genre, Show, Season, Episode } from "../types";
+import type { Favorite, Preview, Genre, Show, Season, Episode } from "../components/types";
 import debounce from "lodash.debounce";
 
 const PodcastPage: React.FC = () => {
@@ -65,7 +65,6 @@ const PodcastPage: React.FC = () => {
     const fetchShowDetails = (id: number) => {
         setIsLoading(true);
         fetchShow(id).then(data => {
-            // Ensure required properties are present and episodes are typed correctly
             const showWithRequiredProps: Show = {
                 ...data,
                 image: data.image ?? "",
@@ -73,6 +72,7 @@ const PodcastPage: React.FC = () => {
                 updated: data.updated ?? new Date().toISOString(),
                 seasons: (data.seasons ?? []).map(season => ({
                     ...season,
+                    image: season.image ?? "",
                     episodes: (season.episodes ?? []).map(episode => ({
                         ...episode,
                         audioUrl: episode.audioUrl ?? "",
