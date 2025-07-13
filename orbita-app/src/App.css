@@ -153,6 +153,11 @@ header h1 {
   color: #ffffff;
 }
 
+.current-episode {
+  background-color: #e0f7fa;
+  border-radius: 4px;
+}
+
 .episode-list .favorite {
   background-color: #f59e0b;
   color: #ffffff;

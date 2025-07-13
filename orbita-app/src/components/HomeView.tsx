@@ -1,5 +1,6 @@
 import React from "react";
-import { Carousel, ShowCard } from "./";
+import Carousel from "./Carousel";
+import ShowCard from "./ShowCard";
 import type { Preview, Genre } from "./types";
 
 interface HomeViewProps {

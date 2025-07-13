@@ -2,12 +2,18 @@ import React, { useState, useEffect } from "react";
 import { usePodcasts } from "../hooks/usePodcasts";
 import { useFavorites } from "../hooks/useFavorites";
 import { useSearchAndFilter } from "../hooks/useSearchAndFilter";
-import { HomeView, ShowView, FavoritesModal, SearchBar, GenreFilter, SortFilter, AudioPlayer } from "../components";
+import { HomeView } from "../components/HomeView";
+import { ShowView } from "../components/ShowView";
+import { FavoritesModal } from "../components/FavoritesModal";
+import { SearchBar } from "../components/SearchBar";
+import { GenreFilter } from "../components/GenreFilter";
+import { SortFilter } from "../components/SortFilter";
+import AudioPlayer from "../components/AudioPlayer";
 import type { Episode } from "../services/api";
 
 const PodcastPage: React.FC = () => {
   const { previews, genres, selectedShow, selectedSeason, isLoading, fetchShowDetails, setSelectedSeason } = usePodcasts();
-  const { favorites, toggleFavorite, resetFavorites } = useFavorites(previews);
+  const { favorites, toggleFavorite, resetFavorites } = useFavorites();
   const { filteredItems: sortedPreviews, sortOrder, setSortOrder, genreFilter, setGenreFilter, handleSearchChange, searchTerm } = useSearchAndFilter(previews);
   const { filteredItems: sortedFavorites } = useSearchAndFilter(favorites, sortOrder);
   const [view, setView] = useState<'home' | 'show'>('home');

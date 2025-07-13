@@ -48,7 +48,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ currentEpisode }) => {
             {currentEpisode ? ( 
                 <>
                  <p>{currentEpisode.title}</p>
-                 <audio ref={audioRef} src={currentEpisode.file} controls />
+                 <audio ref={audioRef} src={currentEpisode.file} controls autoPlay />
                  <div className="progress">
                     <div className="progress-bar" style={{ width: `${progress}%` }}></div>
                  </div>
