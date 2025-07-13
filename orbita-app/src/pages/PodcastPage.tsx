@@ -30,7 +30,7 @@ const PodcastPage: React.FC = () => {
                 return {
                     ...fav,
                     showTitle: show?.title || 'Unknown Show',
-                    seasonTitle: season?.title || 'unnknown Season',
+                    seasonTitle: season?.title || 'Unknown Season',
                     episodeTitle: episode?.title || 'Unknown Episode'
                 };
             }
