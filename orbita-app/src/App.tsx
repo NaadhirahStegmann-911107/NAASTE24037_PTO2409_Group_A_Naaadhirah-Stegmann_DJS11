@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Outlet } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './components/Home';
 import HomeView from './components/HomeView';
@@ -25,6 +25,8 @@ const HomeViewWrapper: React.FC = () => {
   const { previews, genres, fetchShowDetails, isLoading } = usePodcasts();
 
   if (isLoading) return <p>Loading...</p>;
+
+  if (!previews.length) return <p>No previews available. Check API or console logs.</p>
 
   return <HomeView previews={previews} genres={genres} fetchShowDetails={fetchShowDetails} />
 }
