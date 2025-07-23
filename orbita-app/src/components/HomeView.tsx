@@ -21,3 +21,5 @@ export const HomeView: React.FC<HomeViewProps> = ({ previews, genres, fetchShowD
     </div>
   </>
 );
+
+export default HomeView;

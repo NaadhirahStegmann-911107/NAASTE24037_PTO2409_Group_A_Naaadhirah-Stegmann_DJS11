@@ -9,13 +9,13 @@ import { SearchBar } from "../components/SearchBar";
 import { GenreFilter } from "../components/GenreFilter";
 import { SortFilter } from "../components/SortFilter";
 import AudioPlayer from "../components/AudioPlayer";
-import type { Episode } from "../services/api";
+import type { Episode } from "../components/types";
 
 const PodcastPage: React.FC = () => {
   const { previews, genres, selectedShow, selectedSeason, isLoading, fetchShowDetails, setSelectedSeason } = usePodcasts();
-  const { favorites, toggleFavorite, resetFavorites } = useFavorites();
-  const { filteredItems: sortedPreviews, sortOrder, setSortOrder, genreFilter, setGenreFilter, handleSearchChange, searchTerm } = useSearchAndFilter(previews);
-  const { filteredItems: sortedFavorites } = useSearchAndFilter(favorites, sortOrder);
+  const { favorites, toggleFavorite, resetFavorites } = useFavorites(previews || []);
+  const { filteredItems: sortedPreviews, sortOrder, setSortOrder, genreFilter, setGenreFilter, handleSearchChange, searchTerm } = useSearchAndFilter(previews || []);
+  const { filteredItems: sortedFavorites } = useSearchAndFilter(favorites || [], sortOrder);
   const [view, setView] = useState<'home' | 'show'>('home');
   const [isFavoritesModalOpen, setIsFavoritesModalOpen] = useState(false);
   const [currentEpisode, setCurrentEpisode] = useState<Episode | null>(null);
@@ -60,7 +60,11 @@ const PodcastPage: React.FC = () => {
         toggleFavorite={toggleFavorite}
       />
 
-      <AudioPlayer currentEpisode={currentEpisode ? { ...currentEpisode, id: String(currentEpisode.id), file: currentEpisode.audioUrl } : null} />
+      <AudioPlayer currentEpisode={currentEpisode ? {
+        ...currentEpisode,
+        id: currentEpisode.id,
+        file: currentEpisode.file || (currentEpisode.audioUrl || ""), 
+      } : null} />
     </div>
   );
 };
