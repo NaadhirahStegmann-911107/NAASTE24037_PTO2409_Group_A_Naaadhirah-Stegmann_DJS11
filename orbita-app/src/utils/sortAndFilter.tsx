@@ -8,13 +8,12 @@ export const sortAndFilterItems = <ItemType extends Preview | Favorite>(
 ): ItemType[] => {
   let result = [...items];
 
-  // Type guard to check if items are Preview-like
   if ('genreIds' in items[0] && genreFilter) {
     result = result.filter((item) => {
       if ('genreIds' in item) {
         return item.genreIds.includes(genreFilter);
       }
-      return true; // Keep items that aren't Preview (e.g., Favorite)
+      return true;
     });
   }
 
