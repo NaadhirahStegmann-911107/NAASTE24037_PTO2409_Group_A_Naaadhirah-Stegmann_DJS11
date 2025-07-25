@@ -15,7 +15,7 @@ function Carousel({ previews, genres }) {
     <div className="carousel">
       {previews.map((preview, index) => (
         <div
-          key={preview.id}
+          key={preview.id || `${index}`}
           className={`carousel-item ${index === currentIndex ? "active" : ""}`}
         >
           <ShowCard preview={preview} genres={genres} />

@@ -9,7 +9,7 @@ function HomeView({ previews, genres, fetchShowDetails }) {
       <div className="grid">
         {previews.map((preview) => (
           <div
-            key={preview.id}
+            key={preview.id || `${previews.indexOf(preview)}`}
             onClick={() => fetchShowDetails(Number(preview.id))}
             className="card"
           >

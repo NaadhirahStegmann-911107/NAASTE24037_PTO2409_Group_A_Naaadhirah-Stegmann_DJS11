@@ -14,16 +14,13 @@ function AllShows() {
         const data = await fetchPreviews();
         setPreviews(data);
       } catch (err) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError("An unknown error occurred");
-        }
+        setError(
+          err instanceof Error ? err.message : "An unknown error occurred"
+        );
       } finally {
         setLoading(false);
       }
     };
-
     getPreviews();
   }, []);
 
@@ -38,9 +35,12 @@ function AllShows() {
   return (
     <div>
       <h1>All Shows</h1>
-      <div className="show-list">
+      <div className="container">
         {previews.map((show) => (
-          <div key={show.id} className="show-preview">
+          <div
+            key={show.id || `${previews.indexOf(show)}`}
+            className="show-preview"
+          >
             <img src={show.image} alt={show.title} width="100" />
             <h2>{show.title}</h2>
             <p>Seasons: {show.seasons}</p>

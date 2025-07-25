@@ -1,3 +1,4 @@
+// src/services/api.js
 export async function fetchPreviews() {
   try {
     const response = await fetch("https://podcast-api.netlify.app");
@@ -43,7 +44,20 @@ export async function fetchGenre(id) {
 
 export async function fetchShow(id) {
   try {
-    const response = await fetch(`https://podcast-api.netlify.app/id/${id}`);
+    const response = await fetch(
+      `https://podcast-api.netlify.app/shows/${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error(
+        `HTTP error! status: ${response.status} - ${response.statusText}`
+      );
+    }
     if (!response.ok) throw new Error(`Failed to fetch show with ID ${id}`);
     const data = await response.json();
     console.log("Fetched show data:", data);
