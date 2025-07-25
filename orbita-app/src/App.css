@@ -89,7 +89,6 @@ header h1 {
 }
 
 .show-list {
-  /* New style for grid layout */
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
@@ -97,10 +96,7 @@ header h1 {
 
 @media (min-width: 768px) {
   .show-list {
-    grid-template-columns: repeat(
-      3,
-      1fr
-    ); /* Match .grid for 3 columns on larger screens */
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 

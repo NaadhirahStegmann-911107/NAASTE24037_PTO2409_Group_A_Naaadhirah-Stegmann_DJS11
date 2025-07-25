@@ -25,17 +25,17 @@ function AllShows() {
   }, []);
 
   if (loading) {
-    return <div>Loading shows...</div>;
+    return <div className="container">Loading shows...</div>;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className="container">Error: {error}</div>;
   }
 
   return (
-    <div>
+    <div className="container">
       <h1>All Shows</h1>
-      <div className="container">
+      <div className="show-list">
         {previews.map((show) => (
           <div
             key={show.id || `${previews.indexOf(show)}`}
