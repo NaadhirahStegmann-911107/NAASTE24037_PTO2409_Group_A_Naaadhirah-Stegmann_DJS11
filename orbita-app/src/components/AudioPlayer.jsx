@@ -1,7 +1,7 @@
 import React from "react";
 
 function AudioPlayer({ currentEpisode }) {
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = React.useState(0);
   const audioRef = React.useRef(null);
 
   React.useEffect(() => {
