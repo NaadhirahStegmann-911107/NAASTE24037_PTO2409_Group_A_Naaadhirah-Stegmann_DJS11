@@ -1,35 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { fetchPreviews } from "../services/api";
+import React from "react";
+import { useOutletContext, useNavigate } from "react-router-dom";
 
 function AllShows() {
-  const [previews, setPreviews] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { previews } = useOutletContext();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const getPreviews = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const data = await fetchPreviews();
-        setPreviews(data);
-      } catch (err) {
-        setError(
-          err instanceof Error ? err.message : "An unknown error occurred"
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
-    getPreviews();
-  }, []);
-
-  if (loading) {
-    return <div className="container">Loading shows...</div>;
-  }
-
-  if (error) {
-    return <div className="container">Error: {error}</div>;
+  // The loading state is now handled by the parent App component.
+  // We can add a guard clause here for when previews aren't ready.
+  if (!previews || previews.length === 0) {
+    return <div className="container">No shows available.</div>;
   }
 
   return (
@@ -38,8 +17,10 @@ function AllShows() {
       <div className="show-list">
         {previews.map((show) => (
           <div
-            key={show.id || `${previews.indexOf(show)}`}
+            key={show.id}
             className="show-preview"
+            onClick={() => navigate(`/podcast/${show.id}`)}
+            style={{ cursor: "pointer" }}
           >
             <img src={show.image} alt={show.title} width="100" />
             <h2>{show.title}</h2>

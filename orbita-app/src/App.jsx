@@ -1,51 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
+import { Outlet, Link } from "react-router-dom";
 import Layout from "./components/Layout";
-import { Home } from "./components/Home";
-import HomeView from "./components/HomeView";
-import AllShows from "./components/AllShows";
-import PodcastPage from "./pages/PodcastPage";
 import { usePodcasts } from "./hooks/usePodcasts";
 import "./App.css";
 
 function App() {
-  const [view, setView] = useState("home");
-  const [podcastId, setPodcastId] = useState(null);
-  const { previews, genres, fetchShowDetails, isLoading } = usePodcasts();
-
-  const handleNavigate = (newView, id) => {
-    setView(newView);
-    if (id) setPodcastId(id);
-  };
+  // The data from this hook will be passed down to the child routes
+  // via the Outlet's context prop.
+  const podcastData = usePodcasts();
 
   return (
     <Layout>
       <div>
         <nav>
-          <button onClick={() => handleNavigate("home")}>Home</button>
-          <button onClick={() => handleNavigate("homeView")}>Home View</button>
-          <button onClick={() => handleNavigate("shows")}>All Shows</button>
-          <button onClick={() => handleNavigate("podcast", "1")}>
-            Podcast
-          </button>
+          {/* Use Link components for navigation */}
+          <Link to="/home">Home</Link>
+          <Link to="/">Podcasts</Link>
+          <Link to="/shows">All Shows</Link>
         </nav>
-        {isLoading && <p>Loading...</p>}
-        {!previews.length && !isLoading && (
-          <p>No previews available. Check console.</p>
-        )}
-        {view === "home" && <Home />}
-        {view === "homeView" && previews && previews.length > 0 && (
-          <HomeView
-            previews={previews}
-            genres={genres}
-            fetchShowDetails={fetchShowDetails}
-          />
-        )}
-        {view === "podcast" && podcastId && (
-          <PodcastPage podcastId={podcastId} />
-        )}
-        {view === "shows" && previews && previews.length > 0 && (
-          <AllShows previews={previews} />
-        )}
+        {podcastData.isLoading && <p>Loading...</p>}
+
+        {/* The Outlet will render the matched child route.
+            We pass the podcastData down to the routes via context. */}
+        <Outlet context={podcastData} />
       </div>
     </Layout>
   );
